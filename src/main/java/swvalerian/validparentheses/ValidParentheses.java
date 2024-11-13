@@ -40,31 +40,29 @@ public class ValidParentheses {
         char[] charArray = s.toCharArray();
 
         char roundBracket = '(';
-        char cubBracket = '[';
-        char rocketBracket = '{';
+        char squareBracket = '[';
+        char curlyBracket = '{';
 
         Stack<Character> stack = new Stack<>();
 
         for (char ch : charArray) {
-
             if (ch == roundBracket) {
                 stack.push(')');
+            } else if (ch == squareBracket) {
+                stack.push(']');
+            } else if (ch == curlyBracket) {
+                stack.push('}');
+            } else if (!stack.isEmpty() && stack.peek() == ch) {
+                stack.pop(); // удалим элемент
             } else {
-                if (ch == cubBracket) {
-                    stack.push(']');
-                } else
-                    if (ch == rocketBracket) {
-                    stack.push('}');
-                }
-
-                if (!stack.isEmpty() && stack.peek() == ch) {
-                    stack.pop(); // удалим элемент
-                } else {
-                    return false;
-                }
-
+                return false;
             }
         }
+
+        if (stack.size() > 0) {
+            return false;
+        }
+
         return true;
     }
 }
