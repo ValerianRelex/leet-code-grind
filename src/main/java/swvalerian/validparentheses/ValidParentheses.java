@@ -53,7 +53,7 @@ public class ValidParentheses {
             } else if (ch == curlyBracket) {
                 stack.push('}');
             } else if (!stack.isEmpty() && stack.peek() == ch) {
-                stack.pop(); // удалим элемент
+                stack.pop(); // delete from stack
             } else {
                 return false;
             }
@@ -64,5 +64,20 @@ public class ValidParentheses {
         }
 
         return true;
+    }
+
+    public static boolean isValidWithoutUseStack(String s) {
+        while (true) {
+            if (s.contains("()")) {
+                s = s.replace("()", "");
+            } else if (s.contains("{}")) {
+                s = s.replace("{}", "");
+            } else if (s.contains("[]")) {
+                s = s.replace("[]", "");
+            } else {
+                // If the string becomes empty, it indicates all brackets are matched.
+                return s.isEmpty();
+            }
+        }
     }
 }
