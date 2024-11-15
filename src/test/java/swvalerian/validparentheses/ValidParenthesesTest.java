@@ -68,4 +68,13 @@ class ValidParenthesesTest {
 
         assertEquals(false, result);
     }
+
+    @Test
+    void isValidWithoutUseStack_testCase1() {
+        String input = "((";
+
+        Boolean result = ValidParentheses.isValid(input);
+
+        assertEquals(false, result);
+    }
 }
