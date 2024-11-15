@@ -37,33 +37,25 @@ import java.util.Stack;
 
 public class ValidParentheses {
     public static boolean isValid(String s) {
-        char[] charArray = s.toCharArray();
-
         char roundBracket = '(';
         char squareBracket = '[';
         char curlyBracket = '{';
 
         Stack<Character> stack = new Stack<>();
 
-        for (char ch : charArray) {
+        for (char ch : s.toCharArray()) {
             if (ch == roundBracket) {
                 stack.push(')');
             } else if (ch == squareBracket) {
                 stack.push(']');
             } else if (ch == curlyBracket) {
                 stack.push('}');
-            } else if (!stack.isEmpty() && stack.peek() == ch) {
-                stack.pop(); // delete from stack
-            } else {
+            } else if (stack.isEmpty() || stack.pop() != ch) {
                 return false;
             }
         }
 
-        if (stack.size() > 0) {
-            return false;
-        }
-
-        return true;
+        return stack.isEmpty();
     }
 
     public static boolean isValidWithoutUseStack(String s) {
