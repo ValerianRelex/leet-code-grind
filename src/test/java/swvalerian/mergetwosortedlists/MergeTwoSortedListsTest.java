@@ -43,21 +43,40 @@ class MergeTwoSortedListsTest {
 
     @Test
     void mergeTwoSortedLists_case2() {
+        MergeTwoSortedLists.ListNode list1 = new MergeTwoSortedLists.ListNode(1);
+        MergeTwoSortedLists.ListNode list2 = null;
+
+        list1.next = new MergeTwoSortedLists.ListNode(2, new MergeTwoSortedLists.ListNode(4));
+
+        MergeTwoSortedLists.ListNode mergedList = MergeTwoSortedLists.mergeTwoLists(list1, list2);
+
+        assertEquals(1, mergedList.val);
+        assertEquals(2, mergedList.next.val);
+        assertEquals(4, mergedList.next.next.val);
 
     }
 
     @Test
     void mergeTwoSortedLists_case3() {
+        MergeTwoSortedLists.ListNode list1 = null;
+        MergeTwoSortedLists.ListNode list2 = null;
 
+        MergeTwoSortedLists.ListNode mergedList = MergeTwoSortedLists.mergeTwoLists(list1, list2);
+
+        assertEquals(null, mergedList);
     }
 
     @Test
     void mergeTwoSortedLists_case4() {
+        MergeTwoSortedLists.ListNode list1 = null;
+        MergeTwoSortedLists.ListNode list2 = new MergeTwoSortedLists.ListNode(1);
 
-    }
+        list2.next = new MergeTwoSortedLists.ListNode(3, new MergeTwoSortedLists.ListNode(4));
 
-    @Test
-    void mergeTwoSortedLists_case5() {
+        MergeTwoSortedLists.ListNode mergedList = MergeTwoSortedLists.mergeTwoLists(list1, list2);
 
+        assertEquals(1, mergedList.val);
+        assertEquals(3, mergedList.next.val);
+        assertEquals(4, mergedList.next.next.val);
     }
 }
