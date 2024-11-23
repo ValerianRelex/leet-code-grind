@@ -43,14 +43,14 @@ public class MergeTwoSortedLists {
         while (list1 != null && list2 != null) {
 
                 if (list1.val < list2.val) {
-                mergedList.next = list1;
-                list1 = list1.next;
+                mergedList.next = list1; // здесь записано текущее значение лист1 и всей его последовательности
+                list1 = list1.next; // здесь лист1 стал другим, но в мерджедлист.некст хранится старое значение лист1 - что нам и надо для цепочки.
             } else {
                 mergedList.next = list2;
                 list2 = list2.next;
             }
 
-            mergedList = mergedList.next;
+            mergedList = mergedList.next; // здесь нам надо переключиться на след. звено в цепочке, дабы записать в его поле некст - новое сравнимое значение
         }
 
         mergedList.next = list1 == null ? list2 : list1;
