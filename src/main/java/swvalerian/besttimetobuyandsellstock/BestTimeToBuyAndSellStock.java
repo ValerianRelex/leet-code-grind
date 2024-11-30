@@ -38,18 +38,12 @@ package swvalerian.besttimetobuyandsellstock;
 
 public class BestTimeToBuyAndSellStock {
         public static int maxProfit(int[] prices) {
-//            int max = prices[0];
             int min = prices[0];
             int profit = 0;
 
-//            int maxIndex = 0;
-//            int minIndex = 0;
-
             for (int i = 1; i < prices.length;   i++) {
                 if (prices[i] < min) {
-//                    minIndex = i;
                     min = prices[i];
-//                    max = prices[i];
                 } else if ((prices[i] - min) > profit) {
                     profit = (prices[i] - min);
                 }
