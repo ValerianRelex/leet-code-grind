@@ -46,4 +46,24 @@ public class ValidPalindrome {
         }
         return true;
     }
+
+    public static boolean isPalindrome_ver2(String s) {
+        s = s.replaceAll("[^a-zA-Zа-яА-Я0-9]", "").toLowerCase(); // это долго, поэтому по времени разницы не видно между ver1 и ver2
+
+        char[] charsSeq = s.toCharArray();
+
+        for (int i = 0; i < charsSeq.length / 2; i++) {
+            if (charsSeq[i] != charsSeq[charsSeq.length -i -1]) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static boolean isPalindrome_ver3(String s) {
+        // Реализовать более быструю проверку, основанную на двух индексах!
+        // А еще можно организовать проверку с помощью StringBuilder!
+        return true;
+    }
 }
