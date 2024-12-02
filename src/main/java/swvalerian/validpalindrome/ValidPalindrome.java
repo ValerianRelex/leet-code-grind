@@ -62,8 +62,40 @@ public class ValidPalindrome {
     }
 
     public static boolean isPalindrome_ver3(String s) {
-        // Реализовать более быструю проверку, основанную на двух индексах!
         // А еще можно организовать проверку с помощью StringBuilder!
+        StringBuilder palindrome = new StringBuilder();
+
+        for (char ch: s.toCharArray()) {
+            if (Character.isLetterOrDigit(ch)) {
+                palindrome.append(ch);
+            }
+        }
+
+        return palindrome.toString().equalsIgnoreCase(palindrome.reverse().toString());
+    }
+
+    public static boolean isPalindrome_ver4(String s) {
+        // Реализовать более быструю проверку, основанную на двух индексах!
+        int left = 0;
+        int right = s.length()-1;
+
+        while (left <= right) {
+            char curCharLeft = s.charAt(left);
+            char curCharRight = s.charAt(right);
+
+            if (!Character.isLetterOrDigit(curCharLeft)) {
+                left++;
+            } else if (!Character.isLetterOrDigit(curCharRight)) {
+                right--;
+            } else {
+                if (Character.toLowerCase(curCharLeft) != Character.toLowerCase(curCharRight)) {
+                    return false;
+                }
+                left++;
+                right--;
+            }
+        }
+
         return true;
     }
 }
