@@ -7,11 +7,20 @@ version = '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+    flatDir {
+        dirs "lib"
+    }
 }
+
 
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    // https://mvnrepository.com/artifact/edu.princeton.cs/algs4
+    implementation 'edu.princeton.cs:algs4:1.0.4'
+
+
 }
 
 test {
