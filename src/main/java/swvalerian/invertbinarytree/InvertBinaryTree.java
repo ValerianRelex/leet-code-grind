@@ -29,8 +29,26 @@ package swvalerian.invertbinarytree;
 
 
 public class InvertBinaryTree {
-    public static TreeNode invertTree(TreeNode root) {
-            // готов к решению задачи...
-        return new TreeNode();
+    public static TreeNode invertTreeRecursive(TreeNode root) {
+        if (root == null) {
+            return root;
+        }
+
+        invertTreeRecursive(root.left);
+        invertTreeRecursive(root.right);
+
+        TreeNode tempRoot = root.left;
+        root.left = root.right;
+        root.right = tempRoot;
+
+        return root;
+    }
+
+
+
+    private static TreeNode invertTreeIterative(TreeNode root) {
+        // TODO: реализовать самому с помощью Queue !!!
+
+        return root;
     }
 }
