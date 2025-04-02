@@ -23,47 +23,96 @@ public class MainApp {
         seven.left = six;
         seven.right = nine;
 
-
-        TreeNode invertedTree = InvertBinaryTree.invertTreeRecursive(root);
-
-
-        System.out.println(invertedTree.val);
-
-        // предлагаю сначал сделать обход дерева.
-
-//        printTreeHelper(root, "-", true);
+//        traverse(root);
 //
-//        String bfs = bfs(root);
+//        TreeNode invertedTree = InvertBinaryTree.invertTreeRecursive(root);
 //
-//        System.out.println(bfs);
+//        System.out.println("Корень инверт дерева = " + invertedTree.val);
+//
+//        traverse(invertedTree);
 
-//        printTreeNode(root);
 
+//        traverse(two); // до
+//
+//        System.out.println("\n\nмой алгос \n");
+//
+//        reverseTreeNode(two);
+//        traverse(two); // после
 
+        System.out.println("\n\n");
+        printTreeHelper(two, " ", true);
+        traverse(two); // до
 
+        System.out.println(bfs(two));
+
+        System.out.println("\n\nмой алгос \n");
+
+        invertTree(two);
+        traverse(two); // после
+
+        System.out.println("\n\n");
+        printTreeHelper(root, " ", true);
 
     }
 
-    public static void printTreeNode(TreeNode root) {
-
-        TreeNode head = root;
-
-        System.out.println(root.val);
-
-        if (root != null) {
-
-            System.out.println("");
-
-            if (root.left != null) {
-                root = root.left;
-            } else if (root.right != null) {
-                root = root.right;
-            }
-
-            printTreeNode(root);
+    // мой варик
+    public static TreeNode invertTree(TreeNode root) {
+        if (root == null) {
+            return root;
         }
 
+        invertTree(root.left);
+        invertTree(root.right);
+
+        TreeNode temp = root.left;
+        root.left = root.right;
+        root.right = temp;
+
+        return root;
     }
+
+    public static TreeNode reverseTreeNode(TreeNode root) {
+        if (root == null) {
+            return root;
+        }
+
+        Queue<TreeNode> queue = new LinkedList<>();
+
+        TreeNode result = root;
+
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+
+            root = queue.poll();
+
+            if (root.left != null) {
+                queue.add(root.left);
+            }
+            if (root.right != null) {
+                queue.add(root.right);
+            }
+
+            TreeNode temp = root.left;
+            root.left = root.right;
+            root.right = temp;
+
+        }
+
+        return result;
+    }
+
+    private static void traverse(TreeNode node) {
+        if (node == null) return;
+
+        traverse(node.left);
+        System.out.println(node.val);
+
+        traverse(node.right);
+    }
+    // пытаюсь изобразить итеративный вариант реверса тринод
+
+
 
     private static void printTreeHelper(TreeNode node, String prefix, boolean isTail) {
         if (node == null) {
